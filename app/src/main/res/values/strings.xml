@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">认识汉字</string>
+    <string name="defult">字</string>
+    <string name="privous">前</string>
+    <string name="next">后</string>
+    <string name="showAll">查看所有汉字</string>
+    <string name="upchar">上传新字</string>
+</resources>
