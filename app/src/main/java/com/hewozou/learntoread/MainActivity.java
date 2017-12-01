@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+
     SQLiteDatabase database;
     Mysql sql;//工具类
     TextView et;
@@ -121,6 +122,7 @@ public class MainActivity extends Activity {
             list.add(cursor.getString(0));
         }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
