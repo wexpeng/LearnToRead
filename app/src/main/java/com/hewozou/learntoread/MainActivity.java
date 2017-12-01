@@ -47,12 +47,14 @@ public class MainActivity extends Activity {
                         String etd = ed.getText().toString();
                         et.setText(etd);
                         try {
-                            if (!ed.getText().toString().equals("")) {
+                            String b = "[\u4e00-\u9fa5]";// 汉字的正则表达式[\u4e00-\u9fa5]
+                            if (ed.getText().toString().matches(b)) {
                                 String insertsql = "insert into my(China) values('" + etd + "')";
                                 database.execSQL(insertsql);
                                 Toast.makeText(MainActivity.this, "存储成功!", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(MainActivity.this, "数据无效!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "请输入汉字!", Toast.LENGTH_SHORT).show();
+                                et.setText(R.string.defult);
                             }
                         } catch (Exception ex) {
                             Toast.makeText(MainActivity.this, "数据已存在!", Toast.LENGTH_SHORT).show();
@@ -119,7 +121,6 @@ public class MainActivity extends Activity {
             list.add(cursor.getString(0));
         }
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
