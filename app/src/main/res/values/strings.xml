@@ -3,4 +3,7 @@
     <string name="defult">字</string>
     <string name="showAll">查看所有汉字</string>
     <string name="upchar">上传新字</string>
+    <string name="changechar">修改本字</string>
+    <string name="China">汉字</string>
+    <string name="next_China">下一个汉字</string>
 </resources>

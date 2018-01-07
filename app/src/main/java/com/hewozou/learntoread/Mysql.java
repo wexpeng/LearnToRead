@@ -12,7 +12,7 @@ public class Mysql extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table my(China primary key)");//建表
+        db.execSQL("create table my(id INTEGER PRIMARY KEY AUTOINCREMENT,China)");//建表
         db.execSQL("insert into my(China) values('中')");//插入一条初始数据
     }
 

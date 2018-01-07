@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent">
@@ -24,7 +24,8 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:src="@drawable/selector"
-            android:onClick="previousChar" />
+            android:onClick="previousChar"
+            android:contentDescription="@string/China" />
 
         <TextView
             android:id="@+id/TextView"
@@ -40,16 +41,30 @@
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
             android:src="@drawable/selector2"
-            android:onClick="nextChar" />
+            android:onClick="nextChar"
+            android:contentDescription="@string/next_China" />
 
     </LinearLayout>
 
-
-    <Button
-        android:id="@+id/upchar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/upchar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:onClick="upChar"
-        android:text="@string/upchar" />
-
+        android:text="@string/upchar"
+        tools:ignore="ButtonStyle" />
+    <Button
+        android:id="@+id/changechar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="changechar"
+        android:text="@string/changechar"
+        tools:ignore="ButtonStyle" />
+    </LinearLayout>
 </LinearLayout>

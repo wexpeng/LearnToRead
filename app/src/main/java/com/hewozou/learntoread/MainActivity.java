@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
         et = findViewById(R.id.TextView);
         sql = new Mysql(this, "1.db", 1);
         database = sql.getReadableDatabase();
-        cursor = database.rawQuery("select * from my", null);
+        cursor = database.rawQuery("select China from my", null);
     }
 
     public void upChar(View view) {
@@ -116,7 +116,8 @@ public class MainActivity extends Activity {
     }
 
     public void all() {
-        cursor = database.rawQuery("select * from my", null);
+        //TODO 查看全部
+        cursor = database.rawQuery("select China from my", null);
         list = new ArrayList<>();
         while (cursor.moveToNext()) {
             list.add(cursor.getString(0));
@@ -127,5 +128,39 @@ public class MainActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         database.close();
+    }
+
+    public void changechar(View view) {
+        //TODO 改变字符
+        final EditText ed = new EditText(this);
+        ed.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1)});//设置输入字符数量为1
+        new AlertDialog.Builder(this).setTitle("修改")
+                .setIcon(android.R.drawable.ic_menu_manage)
+                .setView(ed)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String etd = ed.getText().toString();
+                        try {
+                            String b = "[\u4e00-\u9fa5]";// 汉字的正则表达式[\u4e00-\u9fa5]
+                            if (ed.getText().toString().matches(b)) {
+                                TextView showText = findViewById(R.id.TextView);
+                                String sqlText = showText.getText().toString();
+                                Toast.makeText(MainActivity.this, sqlText, Toast.LENGTH_SHORT).show();
+                                String updatesql = "update my set China = '" + etd + "' where China = '"+ sqlText +"'";
+                                database.execSQL(updatesql);
+                                showText.setText(sqlText);
+                                Toast.makeText(MainActivity.this, "修改成功!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(MainActivity.this, "请输入汉字!", Toast.LENGTH_SHORT).show();
+
+                                et.setText(R.string.defult);
+                            }
+                        } catch (Exception ex) {
+                            Toast.makeText(MainActivity.this, "发生了错误!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).show();
+
     }
 }
